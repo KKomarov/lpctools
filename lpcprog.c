@@ -237,11 +237,12 @@ int main(int argc, char** argv)
 		printf("Unable to connect to target, consider hard reset of target or link\n");
 		return -1;
 	}
-
+	int ret = 0;
 	if (command != NULL)  {
 		int err = 0;
 		err = prog_handle_command(command, dev_id, nb_cmd_args, cmd_args);
 		if (err >= 0) {
+			ret = err;
 			if (trace_on) {
 				printf("Command \"%s\" handled OK.\n", command);
 			}
@@ -255,7 +256,7 @@ int main(int argc, char** argv)
 		free(cmd_args);
 	}
 	isp_serial_close();
-	return 0;
+	return ret;
 }
 
 struct prog_command {
