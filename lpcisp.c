@@ -225,8 +225,8 @@ int main(int argc, char** argv)
 		}
 	}
 
+	int err = 0;
 	if (command != NULL)  {
-		int err = 0;
 		err = isp_handle_command(command, nb_cmd_args, cmd_args);
 		if (err >= 0) {
 			if (trace_on) {
@@ -242,7 +242,7 @@ int main(int argc, char** argv)
 		free(cmd_args);
 	}
 	isp_serial_close();
-	return 0;
+	return err;
 }
 
 struct isp_command {
