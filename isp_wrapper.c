@@ -92,7 +92,7 @@ int isp_cmd_read_memory(int arg_count, char** args)
 	len = isp_read_memory(data, addr, count, uuencoded);
 	if (len != (int)count) {
 		printf("Read returned %d bytes instead of %lu.\n", len, count);
-		ret = len;
+		ret = 1;
 	} else {
 		/* Write data to file */
 		ret = isp_buff_to_file(data, len, out_file_name);
